@@ -42,7 +42,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
 // curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/cacert.pem');
 if( !($res = curl_exec($ch)) ) {
   // error_log("Got " . curl_error($ch) . " when processing IPN data");
-  mail('sales@luke-designs.com.au', 'paypalerror', "curlerror");
+  mail('test@hotmail.com', 'paypalerror', "curlerror");
   curl_close($ch);
   exit;
 }
@@ -74,14 +74,14 @@ if (strcmp ($res, "VERIFIED") == 0) {
     ':id'   => $orderid,
     ':status' => "paid"
     ));
-   mail('sales@luke-designs.com.au', 'Paypal order', "Paid - Order Complete");
+   mail('test@hotmail.com', 'Paypal order', "Paid - Order Complete");
  } catch(PDOException $e) {
-  mail('sales@luke-designs.com.au', 'Paypal order error', "Error");
+  mail('test@hotmail.com', 'Paypal order error', "Error");
 }
 
 } else if (strcmp ($res, "INVALID") == 0) {
     // IPN invalid, log for manual investigation
-  mail('sales@luke-designs.com.au', 'paypalerror invalid', "Paypal IPN sent invalid response");
+  mail('test@hotmail.com', 'paypalerror invalid', "Paypal IPN sent invalid response");
 }
 
 
