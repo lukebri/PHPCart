@@ -10,7 +10,7 @@ require_once 'inc/init.php';
   <meta name="description" content="Luke Designs Template">
   <meta name="author" content="Luke Designs">
   <title><?php echo $pageTitle; ?></title>
-<link rel="icon" type="image/ico" href="http://www.lukedev.net.au/0-mycart/favicon.ico">
+<link rel="icon" type="image/ico" href="./favicon.ico">
   <!-- Bootstrap + Theme CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
@@ -25,17 +25,19 @@ require_once 'inc/init.php';
 <body>
 
   <div id="topbutton">
-   <?php if ($general->is_admin()) { ?>
-   <a href="admin.php"><button>ADMIN</button></a>
+   <?php if ($general->is_admin() && $general->is_logged_in()) { ?>
+   <a href="admin.php">ADMIN</a>
+   <?php } elseif ($general->is_logged_in()) { ?>
+   <a href="admin.php">MY ACCOUNT</a>
    <?php } ?>
    <?php if ($general->is_logged_in()) { ?>
-   <a href="logout.php"><button>LOGOUT</button></a>
+   <a href="logout.php">LOGOUT</a>
    <?php } else { ?>
    <div class="mbox"><strong class="warning"></strong></div>
-   <form action="" id="loginform" class="form-inline" method="post">
+   <form id="loginform" class="form-inline" method="post">
     <div class="form-group">
       <label class="sr-only" for="lusername">Username:</label>
-      <input type="text" class="login" min="5" name="lusername" id="lusername" placeholder="Username" required>
+      <input type="text" class="login" name="lusername" id="lusername" placeholder="Username" required>
     </div>
     <div class="form-group">
       <label class="sr-only" for="lpassword">password:</label>
@@ -45,8 +47,7 @@ require_once 'inc/init.php';
     <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>">
     <input type="submit" id="submit" value="LOGIN">
   </form>
-</a>
-<a href="register.php"><button>REGISTER</button></a>
+<a href="register.php">REGISTER</a>
 <?php } ?>
 </div>
 <header>
@@ -60,12 +61,11 @@ require_once 'inc/init.php';
           <img src="img/lb-logo.png" alt="logo">
         </a>
       </div>
-      <!--  <img src="img/light.png" class="light" alt="Light"> -->
     </section><!-- /logo -->
 
     <section id="navig" class="col-lg-8 col-sm-8 col-xs-12">
       <div id="cart">
-        <a href="cart.php">There are <?php if (isset ($_SESSION['cart'])) {echo '<b>' . count($_SESSION['cart']) . '</b>'; } else { echo '<b>' . "no" . '</b>'; } ?> items in your cart.</a>
+        <a href="cart.php">There are <?php if (isset ($_SESSION['cart'])) {echo '<b>' . count($_SESSION['cart']) . '</b>'; } else { echo '<b> no </b>'; } ?> items in your cart.</a>
         <?php if (isset($_SESSION['carttotal'])) { echo '<br>' . "Total:" . $_SESSION['carttotal']; } ?>
         </div>
         <nav>
@@ -73,6 +73,7 @@ require_once 'inc/init.php';
            <li><a href="index.php">Home</a></li>
            <li><a href="products.php">Products</a></li>
            <li><a href="contact.php">Contact</a></li>
+           </ul>
          </nav>
        </section><!-- /nav menu -->
 

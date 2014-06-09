@@ -1,14 +1,24 @@
+# PHP + MySQL driven shopping cart template with AJAX powered Paypal Checkout
 
+## To be added:
+# Table creation / Admin account setup script
+# For now details must be set manually in inc/db.php
 
-## PHP + MySQL driven shopping cart using AJAX with Paypal Checkout integrated
+###
+Version 1.1
+###
 
-***
+- Registration form now works correctly
+- Users now receive order placement message
+- Users no longer see admin functions in the control panel
+- Paypal listener now sounds out an email to admin when an order is paid, and to the user that it has been completed.
+- Further security in the AJAX Cart has been implemented to check the value of orders prior to submission, as well as after
+- Better form validation to prevent special characters
+
+###
 Version 1.0
-##
+###
 
-Refactoring yet to be done
+-Initial release
 
-####To be added:
-* View Orders, delete/check status of orders for admin and users via admin page
-* Rename 'Admin' to 'My Account' when in non-admin view.
-* Mail verification by default versus 1 click enable by default
+

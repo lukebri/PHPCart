@@ -213,3 +213,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.json
+*.sublime-workspace
+*.sublime-project
+phpcart.sublime-project

@@ -1,6 +1,6 @@
  <div id="addprod" class="col-lg-5 col-sm-6 col-xs-12 adminbox">
   <h2>Add Product</h2>
-  <form class="form-horizontal" role="form" method="post" action="" enctype="multipart/form-data">
+  <form class="form-horizontal" role="form" method="post"  enctype="multipart/form-data">
     <input type="hidden" name="type" value="addproduct">
     <div class="form-group">
      <label class="col-sm-4 control-label" for="name">Product Name:</label>

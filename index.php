@@ -5,6 +5,7 @@ require_once 'inc/header.php';
  ?>
  <!-- End header section-->
  <section id="content">
+ <h2 class="hide">Home</h2>
    <?php
    if (isset($user) && isset($_SESSION['id'])) {
     if(!isset($_SESSION['welcomed'])) {
@@ -25,7 +26,7 @@ require_once 'inc/header.php';
       <section class="col-lg-3 col-sm-3 col-xs-12">
         <p class="col_title"><?php echo $product{'name'}; ?></p>
         <p>
-          <img class="prodgallery" src="<?php echo 'img/upload/' . $product{'img'}; ?>"><br>
+          <img class="prodgallery" alt="<?php echo $product{'name'}; ?>" src="<?php echo 'img/upload/' . $product{'img'}; ?>"><br>
           <?php
           $string = htmlentities($product{'description'});
     // if description > 30 chars, cut....
@@ -52,5 +53,6 @@ require_once 'inc/header.php';
 <?php
 require_once 'inc/footer.php';
 ?>
+</section>
 </body>
 </html>

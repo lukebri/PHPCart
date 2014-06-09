@@ -7,6 +7,7 @@ if (isset($_POST)) {
     /// If receives Delete All Command from Ajax
     if (isset($_POST['DelAll'])) {
         unset($_SESSION['cart']);
+        unset($_SESSION['total']);
         exit;
     }
 
@@ -19,7 +20,13 @@ if (isset($_POST)) {
     }
     $_SESSION['cart'] = $data;
 
+    //Remove item's price from cart total stored in session
+    if (isset($_SESSION['total'])) {
+        $total = $_SESSION['total'];
+        $reduce = $_POST['price'];
+        $total = $total - $reduce;
+        $_SESSION['total'] = $total;
+    }
+
+
 }
-
-
-?>

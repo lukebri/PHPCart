@@ -26,10 +26,13 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
       <section id="viewcart">
         <?php foreach ($_SESSION['cart'] as $prod): ?>
             <?php
-                // var_dump($general->getPrice($prod));
+            // Get total price of each cart item stored in session
             $price = $general->getPrice($prod);
-            $total[] = $price{0}; ?>
+            $total[] = $price{0};
+             ?>
         <?php endforeach ?>
+        <?php // Set total in to session for cart submission later
+            $_SESSION['total'] = array_sum($total); ?>
 
         <aside class="col-lg-6 col-sm-6 col-xs-6" id="checkout">
         <button class="userid" value="<?=$_SESSION['user']{'id'};?>"></button>
@@ -41,7 +44,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 <input type="hidden" name="currency_code" value="AUD" />
                 <input type='hidden' name='rm' value='2'>
                 <input type="hidden" id="invoice" name="invoice" value="">
-                <input type="hidden" name="amount" value="<?=array_sum($total);?>" />
+                <input type="hidden" class="amount" name="amount" value="<?=array_sum($total);?>" />
                 <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" name="submit" alt="PayPal" />
             </form>
         </aside>
@@ -51,13 +54,13 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $prod): ?>
             <?php $item = $products->getprod($prod); ?>
             <?php
-            $id = $item{0}{'id'};
-            if (isset($skip)) {
-               if (in_array($id, $skip)) {
-                continue;
+            $id = $item{0}{'id'}; // Skips if item already shown in cart
+                if (isset($skip)) {
+                   if (in_array($id, $skip)) {
+                    continue;
+                }
             }
-        }
-        ?>
+            ?>
         <p class="prodcart">
             <a href="#" value="<?=$item{0}{'id'}; ?>" class="remcart">X</a>
             <b class="pprice" value="<?=$item{0}{'price'};?>">$<?=$item{0}{'price'};?></b>

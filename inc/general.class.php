@@ -4,6 +4,7 @@
     $this->db = $database;
   }
 
+// Returns the price based on a productid
   public function getPrice($id) {
     $query = $this->db->prepare("SELECT `price` FROM `products` WHERE `id` = ?");
     $query->bindValue(1, $id, PDO::PARAM_INT);

@@ -1,3 +1,4 @@
+   // Use the return session for some errors that return a message
    <?php if(isset($_SESSION['return']))
    {
     foreach ($_SESSION['return'] as $key => $value) {
@@ -6,7 +7,7 @@
     unset($_SESSION['return']);
   }
   ?>
-
+  // Use this to remind user on homepage of registration submission (may be depreciated)
   <?php if (isset($_SESSION['success']) || !empty($success)) : ?>
    <?php
    if (isset($_SESSION['success'])) { $success[] = $_SESSION['success']; }
@@ -20,7 +21,7 @@
 <?php unset($_SESSION['success']); ?>
 <?php endif ?>
 
-
+  // The generic session error display
 <?php if (isset($_SESSION['errors']) || !empty($errors)) : ?>
  <?php
  if (isset($_SESSION['errors'])) { $errors[] = $_SESSION['errors']; }
@@ -32,10 +33,4 @@
 <?php endforeach ?>
 </div>
 <?php unset($_SESSION['errors']); ?>
-<?php endif ?>
-
-<?php if (isset($_SESSION['register_ok'])) : ?>
-  <p class="note">Please <a href="activate.php?code=<?php echo $_SESSION['register_ok']; ?>">activate</a> your account
-  </p>
-  <?php unset($_SESSION['register_ok']); ?>
 <?php endif ?>

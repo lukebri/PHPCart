@@ -16,6 +16,7 @@ unset($_POST);
 ?>
 <!-- End header section-->
 <section id="content">
+<h2 class="hide">Register your account</h2>
   <div class="container">
     <div id="formpage">
 
@@ -28,25 +29,25 @@ unset($_POST);
           <div class="col-lg-6 col-sm-6 col-xs-12" >
             <p>
               <label for="user_name">Username:</label>
-              <input type="text" name="username" placeholder="user Name" id="username" pattern=".{5,}" required>
+              <input type="text" title="Min 5 chars" name="username" placeholder="user Name" id="username">
             </p><p>
             <label for="firstname">First name:</label>
-            <input type="text" name="firstname" placeholder="First Name" id="firstname" pattern=".{2,}" required>
+            <input type="text" title="Min 2 chars" name="firstname" placeholder="First Name" id="firstname">
           </p><p>
           <label for="lastname">Surname:</label>
-          <input type="text" name="lastname" placeholder="Last Name" id="lastname" pattern=".{2,}" required>
+          <input type="text" title="Min 2 chars" name="lastname" placeholder="Last Name" id="lastname">
         </p><p>
       </div>
       <div class="col-lg-6 col-sm-6 col-xs-12">
         <p>
           <label for="email">Email:</label>
-          <input type="email" name="email" id="email" placeholder="Email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
+          <input type="email" title="Email not valid" name="email" id="email" placeholder="Email">
         </p><p>
-        <label for="password">password:</label>
-        <input placeholder="Password" type="password" name="password" id="pass_word" pattern=".{5,}" required>
+        <label for="password">Password:</label>
+        <input placeholder="Password" title="Min 5 chars" type="password" name="password" id="pass_word">
       </p><p>
 
-      <label for="num">3+6 = ?</label><input name="num" type="text" id="num" required>
+      <label for="num">3+6 = ?</label><input name="num" type="text" id="num">
     </p>
   </div>
 

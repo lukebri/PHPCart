@@ -3,7 +3,6 @@ require_once 'password.php';
 class Users {
 
   private $db;
-
   public function __construct($database) {
     $this->db = $database;
   }
@@ -43,6 +42,26 @@ class Users {
 
   }
 
+  public function emailExists($email) {
+    $query = $this->db->prepare("SELECT COUNT(`id`) FROM users WHERE email = ?");
+    $query->bindValue(1, $email);
+
+    try{
+
+      $query->execute();
+      $rows = $query->fetchColumn();
+
+      if($rows == 1){
+        return true;
+      }else{
+        return false;
+      }
+
+    } catch (PDOException $e){
+      die($e->getMessage());
+    }
+
+  }
 
   public function user_exists($username) {
     $query = $this->db->prepare("SELECT COUNT(`id`) FROM users WHERE username = ?");
@@ -63,43 +82,6 @@ class Users {
       die($e->getMessage());
     }
 
-  }
-
-
-  public function updatePassword($password, $id) {
-
-    $query = $this->db->prepare("UPDATE users SET password= ? WHERE id = ?");
-    $query->bindValue(1, $password);
-    $query->bindValue(2, $id);
-    try{
-      $query->execute();
-    }catch(PDOException $e){
-      die($e->getMessage());
-    }
-  }
-
-  public function checkpassword($id, $password) {
-
-    $password = htmlentities($_POST['currentpass']);
-    $id = htmlentities($_POST['id']);
-
-    $query = $this->db->prepare("SELECT `password`, `id` FROM `users` WHERE `id` = ?");
-    $query->bindValue(1, $id);
-
-    try{
-      $query->execute();
-      $data        = $query->fetch();
-      $stored  = $data['password'];
-      $id         = $data['id'];
-    #hashing the supplied password and comparing it with the stored hashed password.
-      if(password_verify($password, $stored)){
-        return $id;
-      }else{
-        return false;
-      }
-    }catch(PDOException $e){
-      die($e->getMessage());
-    }
   }
 
   public function login($username, $password) {
@@ -186,8 +168,6 @@ class Users {
           $query->execute();
           $_SESSION['register_ok'] = $passkey;
           header("Location: index.php");
-          /// need to send activation email ... // needs testing
-          /* mail($email, 'Please activate your account', "Hello " . $username. ",\r\nThank you for registering with us. Please visit the link below so we can activate your account:\r\n\r\nhttp://www.example.com/activate.php?email=" . $email . "&passkey=" . $passkey . "\r\n\r\n-- Example team"); */
         }
         catch(PDOException $e){die($e->getMessage());}
       }
@@ -198,4 +178,3 @@ class Users {
   }
 
 }
-?>

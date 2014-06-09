@@ -5,7 +5,6 @@ if(isset($_SESSION)) {
     require_once 'users.class.php';
     require_once 'general.class.php';
     require_once 'products.class.php';
-    require_once 'functions.php';
     $users      = new Users($db);
     $general    = new General($db);
     $products    = new Products($db);

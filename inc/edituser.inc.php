@@ -1,6 +1,6 @@
     <div id="edituser" class="col-lg-5 col-sm-6 col-xs-12 adminbox">
       <h2>Edit User</h2>
-      <form class="form-horizontal" role="form" method="post" action="">
+      <form class="form-horizontal" role="form" method="post" >
         <input type="hidden" name="type" value="edituser">
         <div class="form-group">
          <label class="col-sm-4 control-label" for="username">Username:</label>
@@ -34,20 +34,18 @@
        ">Change Password:</p>
 
        <div class="form-group">
-         <label class="col-sm-4 control-label" for="newpass">New Password:</label>
-         <div class="col-sm-8">
-           <input class="form-control" name="newpass" type="text">
-         </div>
-       </div>
-
-       <div class="form-group">
          <label class="col-sm-4 control-label" for="currentpass">Current Password:</label>
          <div class="col-sm-8">
            <input class="form-control" name="currentpass" type="text">
          </div>
        </div>
 
-
+       <div class="form-group">
+         <label class="col-sm-4 control-label" for="newpass">New Password:</label>
+         <div class="col-sm-8">
+           <input class="form-control" name="newpass" type="text">
+         </div>
+       </div>
 
        <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">
